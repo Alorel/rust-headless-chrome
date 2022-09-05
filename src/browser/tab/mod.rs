@@ -57,7 +57,7 @@ use crate::browser::transport::Transport;
 use std::thread::sleep;
 
 pub mod element;
-mod keys;
+pub mod keys;
 pub mod point;
 
 #[derive(Debug)]
@@ -721,7 +721,7 @@ impl Tab {
     /// Get the full HTML contents of the page.
     pub fn get_content(&self) -> Result<String> {
         let func = "
-            (function () { 
+            (function () {
                 let retVal = '';
                 if (document.doctype)
                     retVal = new XMLSerializer().serializeToString(document.doctype);
@@ -822,7 +822,7 @@ impl Tab {
     /// Does the same as `type_str` but it only dispatches a `keypress` and `input` event.
     /// It does not send a `keydown` or `keyup` event.
     ///
-    /// What this means is that it is much faster. 
+    /// What this means is that it is much faster.
     /// It is especially useful when you have a lot of text as input.
     pub fn send_character(&self, char_to_send: &str) -> Result<&Self> {
         self.call_method(Input::InsertText {
